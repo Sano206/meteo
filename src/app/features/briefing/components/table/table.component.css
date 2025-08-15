@@ -1,32 +1,4 @@
 .highlight-blue {
-}
-
-.report-time {
-  font-family: monospace;
-}
-
-.table {
-  width: 100%;
-}
-
-.empty-state {
-  text-align: center;
-  padding: 2rem;
-  border: 2px dashed #ccc;
-  border-radius: 8px;
-  margin-top: 2rem;
-}
-
-.empty-state h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #555;
-}
-
-.empty-state p {
-  color: #777;
-}
-
   color: blue;
   font-weight: bold;
 }
