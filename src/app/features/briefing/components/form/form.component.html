@@ -1,0 +1,53 @@
+<mat-card class="card">
+  <mat-card-title class="card-title">Meteo Briefing Form</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <div formGroupName="reportTypes" class="checkbox-group">
+        <label class="checkbox-group-label">Report Types</label>
+
+        @for (reportType of reportTypes; track reportType) {
+          <mat-checkbox [formControlName]="reportType">{{
+            reportType
+          }}</mat-checkbox>
+        }
+        @if (
+          form.get('reportTypes')?.hasError('requireOneCheckboxToBeChecked') &&
+          form.get('reportTypes')?.touched
+        ) {
+          <mat-error>At least one report type must be selected.</mat-error>
+        }
+      </div>
+
+      <mat-form-field>
+        <mat-label> Stations </mat-label>
+        <input
+          matInput
+          formControlName="stations"
+          [value]="form.get('stations')?.value | uppercaseInput"
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label> Countries </mat-label>
+        <input
+          matInput
+          formControlName="countries"
+          [value]="form.get('countries')?.value | uppercaseInput"
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="briefingService.isLoading() || !form.valid"
+      >
+        @if (briefingService.isLoading()) {
+          <mat-spinner diameter="20"></mat-spinner>
+        } @else {
+          Create Briefing
+        }
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
